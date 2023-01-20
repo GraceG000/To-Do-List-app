@@ -1,5 +1,6 @@
 package com.gracegh.ToDoList.Controller;
 
+import com.gracegh.ToDoList.DTO.UserDTO;
 import com.gracegh.ToDoList.Entity.User;
 import com.gracegh.ToDoList.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +10,7 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+
 
 import javax.validation.Valid;
 
@@ -19,6 +20,7 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    /*Returns the index.html page...*/
     @GetMapping("/index")
     public String index(){
         return "index";
@@ -27,21 +29,21 @@ public class UserController {
     /*This will display the registration page...register.html...*/
     @GetMapping("/register")
     public String registerUserPage(Model model){
-        User user= new User();
-        model.addAttribute("user", user);
+        UserDTO userDTO= new UserDTO();
+        model.addAttribute("user", userDTO);
         return "register";
     }
 
     /*This is for actually registering (saving) the user into the database...*/
     @PostMapping(value = "/save-user")
-    public String registerUser(@Valid @ModelAttribute User user, Errors errors, Model model){
+    public String registerUser(@Valid @ModelAttribute("user") UserDTO userDTO, Errors errors, Model model){
         //checking for errors in the user input...
         if(errors.hasErrors()){
             return "redirect:/register";//if the user input has errors, it will return the registration page...
         }else{
-            User user1 = userService.registerUser(user);
-            model.addAttribute("user", user1);
-            return "login";//if the user inputs all the right details...the user's data will be saved into the database and be directed to the login page...
+            User userDTO1 = userService.registerUser(userDTO);
+            model.addAttribute("user", userDTO1);
+            return "login";//if the user inputs all the right details...the user's data will be saved into the database and the user will be directed to the login page...
         }
     }
 
