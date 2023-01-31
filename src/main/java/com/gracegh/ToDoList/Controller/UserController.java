@@ -21,7 +21,7 @@ public class UserController {
     private UserService userService;
 
     /*Returns the index.html page...*/
-    @GetMapping("/index")
+    @GetMapping("")
     public String index(){
         return "index";
     }
@@ -43,15 +43,13 @@ public class UserController {
         }else{
             User userDTO1 = userService.registerUser(userDTO);
             model.addAttribute("user", userDTO1);
-            return "login";//if the user inputs all the right details...the user's data will be saved into the database and the user will be directed to the login page...
+            return "index";//if the user inputs all the right details...the user's data will be saved into the database and the user will be directed to the login page...
         }
     }
 
     /*This is for displaying the login page...*/
-    @GetMapping("/loginPage")
-    public String loginPage(Model model){
-        User user= new User();
-        model.addAttribute("userLogin", user);
-        return "login";
+    @GetMapping("/landingPage")
+    public String landingPage(Model model){
+        return "landing_page";
     }
 }
