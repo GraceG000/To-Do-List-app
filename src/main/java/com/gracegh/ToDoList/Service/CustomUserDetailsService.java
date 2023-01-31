@@ -1,6 +1,6 @@
 package com.gracegh.ToDoList.Service;
 
-import com.gracegh.ToDoList.Controller.CustomUserDetails;
+import com.gracegh.ToDoList.Entity.CustomUserDetails;
 import com.gracegh.ToDoList.Entity.User;
 import com.gracegh.ToDoList.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;

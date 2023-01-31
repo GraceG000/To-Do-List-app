@@ -32,17 +32,4 @@ public class User {
     private String emailAddress;
     @Column(name="password", unique = true)
     private String password;
-
-    @OneToOne(
-            //implementing cascading...
-            cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY, //here we are implementing lazy fetching...
-            optional = false
-    )
-    @JoinColumn(
-            name ="course_id",
-            referencedColumnName = "courseId"
-    )//where the foreign key is...
-    @Column(name="role")
-    private String role;
 }

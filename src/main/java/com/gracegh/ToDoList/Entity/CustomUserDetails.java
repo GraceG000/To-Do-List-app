@@ -1,4 +1,4 @@
-package com.gracegh.ToDoList.Controller;
+package com.gracegh.ToDoList.Entity;
 
 import com.gracegh.ToDoList.Entity.User;
 import org.springframework.security.core.GrantedAuthority;
